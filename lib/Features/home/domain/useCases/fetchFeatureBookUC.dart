@@ -1,15 +1,15 @@
 import 'package:bookly/Features/home/domain/Repos/HomeRepo.dart';
-import 'package:bookly/Features/home/domain/entities/bookEntity.dart';
 import 'package:bookly/core/Errors/failure.dart';
+import 'package:bookly/core/useCases/UseCase_NoParam.dart';
 import 'package:dartz/dartz.dart';
 
-class fetchFeatureBookUC {
+class fetchFeatureBookUC extends UseCaseNoParam {
   final HomeRepo homeRepo;
 
   fetchFeatureBookUC(this.homeRepo);
-  Future<Either<Failure, List<BookEntity>>> fetchFeatureBook() {
-    //permssion
 
-    return homeRepo.fetchFeatureBook();
+  @override
+  Future<Either<Failure, dynamic>> call() {
+    throw UnimplementedError();
   }
 }
