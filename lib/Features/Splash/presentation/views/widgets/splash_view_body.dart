@@ -1,9 +1,9 @@
 import 'package:bookly/Features/Splash/presentation/views/widgets/sliding_text.dart';
-import 'package:bookly/Features/home/presentation/views/home_view.dart';
-import 'package:bookly/constants.dart';
+import 'package:bookly/core/utils/AppRouter.dart';
 import 'package:bookly/core/utils/assets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashViewbody extends StatefulWidget {
   const SplashViewbody({super.key});
@@ -20,9 +20,31 @@ class _SplashViewbodyState extends State<SplashViewbody>
   void initState() {
     super.initState();
     initSlidingText();
+    navigateTransition();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Center(
+          child: SvgPicture.asset(
+            AssetsData.logo,
+            height: 50,
+            width: 50,
+          ),
+        ),
+        SlidingText(slidingAnimation: slidingAnimation)
+      ],
+    );
+  }
+
+  void navigateTransition() {
     Future.delayed(const Duration(seconds: 2), () {
-      Get.to(const Homepage(),
-          transition: Transition.cupertino, duration: KtransationDuration);
+      GoRouter.of(context).pushReplacement(AppRouter.home);
+      // context.go(AppRouter.home);
     });
   }
 
@@ -35,23 +57,5 @@ class _SplashViewbodyState extends State<SplashViewbody>
         Tween<Offset>(begin: const Offset(0, 5), end: Offset.zero)
             .animate(animationController);
     animationController.forward();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      // crossAxisAlignment: CrossAxisAlignment.c,
-      children: [
-        Center(
-          child: Image.asset(
-            AssetsData.logo,
-            fit: BoxFit.fill,
-            scale: .25,
-          ),
-        ),
-        SlidingText(slidingAnimation: slidingAnimation)
-      ],
-    );
   }
 }
