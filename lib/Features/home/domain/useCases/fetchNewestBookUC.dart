@@ -3,13 +3,13 @@ import 'package:bookly/core/Errors/failure.dart';
 import 'package:bookly/core/useCases/UseCase_NoParam.dart';
 import 'package:dartz/dartz.dart';
 
-class fetchFeatureBookUC extends UseCaseNoParam {
+class fetchNewestBookUC extends UseCaseNoParam {
   final HomeRepo homeRepo;
 
-  fetchFeatureBookUC(this.homeRepo);
+  fetchNewestBookUC(this.homeRepo);
 
   @override
   Future<Either<Failure, dynamic>> call() async {
-    return await homeRepo.fetchFeatureBook();
+    return await homeRepo.fetchNewestBook();
   }
 }
