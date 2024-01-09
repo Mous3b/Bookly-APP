@@ -1,9 +1,13 @@
+import 'package:bookly/Features/home/domain/entities/bookEntity.dart';
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/AppRouter.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
-void main() {
+void main() async {
   runApp(const BooklyApp());
+  Hive.registerAdapter(BookEntityAdapter());
+  await Hive.openBox(KfeaturedBox);
 }
 
 class BooklyApp extends StatelessWidget {
